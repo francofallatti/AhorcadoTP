@@ -3,7 +3,7 @@ package Ahorcado;
 import java.util.ArrayList;
 
 public class Palabra {
-	ArrayList<Character> palabra;	//ver si conviene Linked o Array
+	static ArrayList<Character> palabra;	//ver si conviene Linked o Array
 	
 	public Palabra() {
 	}
@@ -12,7 +12,7 @@ public class Palabra {
 		this.palabra = s;
 	}
 	
-	public boolean contieneLetra(Character c) {
+	public static boolean contieneLetra(Character c) {
 		return palabra.contains(c);
 	}
 	

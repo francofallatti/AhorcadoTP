@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -15,10 +16,15 @@ public class Ahorcado {
 	// modela una lista e palabras cuyas keys(K) son el niver de dificultad de cada
 	// palabra
 	// 0-9 facil, 10-19 medio, >20 dificil
-	private HashMap<String, Dificultad> palabrasHashMap; // *********cambio palabra por String
+	private HashMap<Dificultad,Set<String> > palabrasHashMap; // *********cambio palabra por String
 	public Set<Character> letrasErradaSet; // lista de caracteres errados
 	private Integer intentos;
 
+	
+	private Set<String> palabrasFacil = new HashSet<String>();
+	private Set<String> palabrasIntermedio = new HashSet<String>();
+	private Set<String> palabrasDificil = new HashSet<String>();
+	
 	public Ahorcado() {
 		this.intentos = 6;
 	}
@@ -36,30 +42,35 @@ public class Ahorcado {
 		}
 	}
 	public void listaDePalabras(String palabra) {
-		if (palabra.length() < 5) {
-			palabrasHashMap.put(palabra, Dificultad.Facil);
+		
+		if (dificultad(palabra)==Dificultad.Facil) {
+			palabrasFacil.add(palabra);
+			palabrasHashMap.put(Dificultad.Facil, palabrasFacil);
 		} else {
-			if (palabra.length() >= 5 && palabra.length() < 8) {
-				palabrasHashMap.put(palabra, Dificultad.Intermedio);
+			if (dificultad(palabra)==Dificultad.Intermedio) {
+				palabrasIntermedio.add(palabra);
+				palabrasHashMap.put(Dificultad.Intermedio, palabrasIntermedio);
 			}
-			palabrasHashMap.put(palabra, Dificultad.Dificil);
+			palabrasDificil.add(palabra);
+			palabrasHashMap.put(Dificultad.Dificil, palabrasDificil);
 		}
 	}
 
 	// selecciona palabra a jugar
-	public String palabraEnJuego(String[] palabra) {
-		int random = new Random().nextInt(palabra.length);
-		return palabra[random];
+	public String palabraEnJuego(Dificultad dificultad) { 
+		String[] palabraEnJuego = palabrasHashMap.get(dificultad).toArray(new String[palabrasHashMap.get(dificultad).size()]);
+		Integer r = new Random().nextInt()*palabraEnJuego.length;
+		return palabraEnJuego[r];
 	}
 
-	public static String getPalabraFacil() {
-		throw new RuntimeException("no implementado");
+	public String getPalabraFacil() {
+		return palabraEnJuego(Dificultad.Facil);
 	}
-	public static String getPalabraIntermedia() {
-		throw new RuntimeException("no implementado");
+	public String getPalabraIntermedia() {
+		return palabraEnJuego(Dificultad.Intermedio);
 	}
-	public static String getPalabraDificil() {
-		throw new RuntimeException("no implementado");
+	public String getPalabraDificil() {
+		return palabraEnJuego(Dificultad.Dificil);
 	}
 
 	// comprueba si el caracter se encuentra en la palabra y lo agrega a la lista en
@@ -68,6 +79,18 @@ public class Ahorcado {
 		if (!Palabra.contieneLetra(c)) {
 			letrasErradaSet.add(c);
 			intentos--;
+		}
+	}
+	
+	public static Dificultad dificultad(String p) {
+		if(p.length() < 5) {
+			return Dificultad.Facil;
+		}
+		else {
+			if(p.length() >= 5 && p.length() < 8) {
+				return Dificultad.Intermedio;
+			}
+			return Dificultad.Dificil;
 		}
 	}
 }

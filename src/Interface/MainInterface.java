@@ -4,6 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+import Ahorcado.Dificultad;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+
 public class MainInterface {
 
 	private JFrame frame;
@@ -38,6 +43,11 @@ public class MainInterface {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(334, 11, 90, 20);
+		frame.getContentPane().add(comboBox);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Facil","Intermedio","Dificil"}));
 	}
-
 }

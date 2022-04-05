@@ -1,19 +1,50 @@
 package Ahorcado;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Palabra {
-	static ArrayList<Character> palabra;	//ver si conviene Linked o Array
+	private ArrayList<Character> palabra;	//ver si conviene Linked o Array
 	
 	public Palabra() {
 	}
 	
 	public Palabra(ArrayList<Character> s) {
 		this.palabra = s;
+		
 	}
 	
-	public static boolean contieneLetra(Character c) {
+	public boolean contieneLetra(Character c) {
 		return palabra.contains(c);
+	}
+	
+	public static Set<Integer> indicesDeApariciones(Character c, Palabra p){
+		Set<Integer> ret = new HashSet<Integer>();
+		indicesDeApariciones(c, p, ret);
+		return ret;
+	}
+	
+	private static Set<Integer> indicesDeApariciones(Character c, Palabra p, Set<Integer> ret){
+		if(!p.contieneLetra(c)) {
+			return ret;
+		}
+		else {
+				Integer indice = p.indiceDe(c);
+				ret.add(indice);
+				return indicesDeApariciones(c, p.splitPalabra(indice + 1, p.longitud()), ret);
+		}
+	}
+	
+
+	private Integer indiceDe(Character c) {
+		return palabra.indexOf(c);
+	}
+	
+	private Palabra splitPalabra(Integer desde, Integer hasta) {
+		ArrayList<Character> split = new ArrayList<Character>(palabra.subList(desde, hasta));
+		Palabra ret = new Palabra(split);
+		return ret;
 	}
 	
 	public Integer longitud() {

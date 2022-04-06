@@ -15,6 +15,18 @@ public class Palabra {
 		
 	}
 	
+	public Palabra(String s) {
+		this.palabra= palabraToArrayList(s);
+	}
+	
+	public ArrayList<Character> palabraToArrayList(String palabra) {
+		ArrayList<Character> palabraArrayList = new ArrayList<>();
+		for(int i = 0; i<palabra.length(); i++) {
+			palabraArrayList.add(palabra.charAt(i));
+		}
+		return palabraArrayList;
+	}
+	
 	public boolean contieneLetra(Character c) {
 		return palabra.contains(c);
 	}

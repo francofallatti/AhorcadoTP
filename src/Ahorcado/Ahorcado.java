@@ -4,11 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -16,17 +13,18 @@ public class Ahorcado {
 	// modela una lista e palabras cuyas keys(K) son el niver de dificultad de cada
 	// palabra
 	// 0-9 facil, 10-19 medio, >20 dificil
-	private HashMap<Dificultad,Set<String> > palabrasHashMap; // *********cambio palabra por String
+	private HashMap<Dificultad,Set<Palabra> > palabrasHashMap; // *********cambio palabra por String
 	public Set<Character> letrasErradaSet; // lista de caracteres errados
 	private Integer intentos;
+	private Palabra p;
 
-	
-	private Set<String> palabrasFacil = new HashSet<String>();
-	private Set<String> palabrasIntermedio = new HashSet<String>();
-	private Set<String> palabrasDificil = new HashSet<String>();
 	
 	public Ahorcado() {
 		this.intentos = 6;
+		
+		palabrasHashMap.put(Dificultad.Facil, new HashSet<Palabra>());
+		palabrasHashMap.put(Dificultad.Intermedio, new HashSet<Palabra>());
+		palabrasHashMap.put(Dificultad.Dificil, new HashSet<Palabra>());
 	}
 
 	public void agregarPalabras() {
@@ -42,17 +40,23 @@ public class Ahorcado {
 		}
 	}
 	public void listaDePalabras(String palabra) {
+		p = new Palabra(palabra);
 		
-		if (dificultad(palabra)==Dificultad.Facil) {
-			palabrasFacil.add(palabra);
-			palabrasHashMap.put(Dificultad.Facil, palabrasFacil);
-		} else {
-			if (dificultad(palabra)==Dificultad.Intermedio) {
-				palabrasIntermedio.add(palabra);
-				palabrasHashMap.put(Dificultad.Intermedio, palabrasIntermedio);
-			}
-			palabrasDificil.add(palabra);
-			palabrasHashMap.put(Dificultad.Dificil, palabrasDificil);
+		switch (Palabra.dificultad(p)) {
+		case Facil:
+			palabrasHashMap.get(Dificultad.Facil).add(p);
+			break;
+			
+		case Intermedio:
+			palabrasHashMap.get(Dificultad.Intermedio).add(p);
+			break;
+			
+		case Dificil:
+			palabrasHashMap.get(Dificultad.Facil).add(p);
+			break;
+			
+		default:
+			break;
 		}
 	}
 
@@ -75,22 +79,13 @@ public class Ahorcado {
 
 	// comprueba si el caracter se encuentra en la palabra y lo agrega a la lista en
 	// caso de ser false
-	public void palabraErrada(Character c) {
-		if (!Palabra.contieneLetra(c)) {
+	public void caracterErrada(Character c) {
+		if (!p.contieneLetra(c)) {
 			letrasErradaSet.add(c);
 			intentos--;
 		}
 	}
 	
-	public static Dificultad dificultad(String p) {
-		if(p.length() < 5) {
-			return Dificultad.Facil;
-		}
-		else {
-			if(p.length() >= 5 && p.length() < 8) {
-				return Dificultad.Intermedio;
-			}
-			return Dificultad.Dificil;
-		}
-	}
+	
+	
 }

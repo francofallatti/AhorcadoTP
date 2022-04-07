@@ -10,8 +10,15 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import Ahorcado.Ahorcado;
+import Ahorcado.Dificultad;
+import Ahorcado.Lenguaje;
+
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainInterface {
 
@@ -79,12 +86,34 @@ public class MainInterface {
 		lblTextDificultad.setBounds(85, 90, 244, 14);
 		frame.getContentPane().add(lblTextDificultad);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setForeground(Color.WHITE);
-		comboBox.setBackground(Color.BLACK);
-		comboBox.setBounds(161, 141, 90, 20);
-		frame.getContentPane().add(comboBox);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Facil","Intermedio","Dificil"}));
+		JComboBox comboBoxDificultad = new JComboBox();
+		comboBoxDificultad.setForeground(Color.WHITE);
+		comboBoxDificultad.setBackground(Color.BLACK);
+		comboBoxDificultad.setBounds(161, 115, 90, 20);
+		frame.getContentPane().add(comboBoxDificultad);
+		comboBoxDificultad.setModel(new DefaultComboBoxModel(new Dificultad[] {Dificultad.Facil,Dificultad.Intermedio, Dificultad.Dificil}));
+		
+		JComboBox comboBoxLenguaje = new JComboBox();
+		comboBoxLenguaje.setForeground(Color.WHITE);
+		comboBoxLenguaje.setBackground(Color.BLACK);
+		comboBoxLenguaje.setBounds(161, 160, 90, 20);
+		frame.getContentPane().add(comboBoxLenguaje);
+		comboBoxLenguaje.setModel(new DefaultComboBoxModel(new Lenguaje[] {Lenguaje.Español,Lenguaje.Ingles,Lenguaje.Frances}));
+		
+		JButton btnJugar = new JButton("Jugar!");
+		btnJugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {				
+				Dificultad dificultad = (Dificultad)comboBoxDificultad.getSelectedItem();
+				System.out.println(dificultad);
+				Lenguaje lenguanje = (Lenguaje)comboBoxLenguaje.getSelectedItem();
+				System.out.println(lenguanje);
+				//Ahorcado.jugar(dificultad, lenguaje);
+			}
+		});
+		btnJugar.setBounds(161, 207, 91, 23);
+		frame.getContentPane().add(btnJugar);
+		
+		
 
 	}
 }

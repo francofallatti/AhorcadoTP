@@ -65,14 +65,12 @@ public class Ahorcado {
 			break;
 		}
 	}
-
+	
 	// comprueba si el caracter se encuentra en la palabra y lo agrega a la lista en
 	// caso de ser false
-	public void caracterErrada(Character c) {
-		if (!palabraEnJuego.contieneLetra(c)) {
+	private void caracterErrada(Character c) {
 			letrasErradas.add(c);
 			intentos--;
-		}
 	}
 
 	public Palabra getPalabra() {

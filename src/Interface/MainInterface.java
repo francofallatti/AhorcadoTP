@@ -4,10 +4,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import Ahorcado.Dificultad;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import java.awt.Font;
+import java.awt.Color;
 
 public class MainInterface {
 
@@ -33,6 +37,22 @@ public class MainInterface {
 	 * Create the application.
 	 */
 	public MainInterface() {
+		/*
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		initialize();
 	}
 
@@ -41,13 +61,30 @@ public class MainInterface {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		JLabel nombreJuego = new JLabel("AHORCADO");
+		nombreJuego.setForeground(Color.WHITE);
+		nombreJuego.setBackground(Color.WHITE);
+		nombreJuego.setFont(new Font("Joystix", Font.PLAIN, 18));
+		nombreJuego.setBounds(151, 50, 108, 14);
+		frame.getContentPane().add(nombreJuego);
+		
+		JLabel lblTextDificultad = new JLabel("Seleccione el nivel de dificultad");
+		lblTextDificultad.setForeground(Color.WHITE);
+		lblTextDificultad.setFont(new Font("Joystix", Font.PLAIN, 11));
+		lblTextDificultad.setBounds(85, 90, 244, 14);
+		frame.getContentPane().add(lblTextDificultad);
+
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(334, 11, 90, 20);
+		comboBox.setForeground(Color.WHITE);
+		comboBox.setBackground(Color.BLACK);
+		comboBox.setBounds(161, 141, 90, 20);
 		frame.getContentPane().add(comboBox);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Facil","Intermedio","Dificil"}));
+
 	}
 }

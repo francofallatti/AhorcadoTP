@@ -33,12 +33,16 @@ public class Ahorcado {
 		Integer r = new Random().nextInt()*palabras.get(dificultad).size();
 		palabraEnJuego = palabrasPorDificultad[r];
 	}
+	
+	public static void jugar(Dificultad dificultad){
+		Ahorcado ahorcado = new Ahorcado(dificultad);
+	}
 
 	private void agregarPalabras() {
 		try (FileReader fr = new FileReader("ListaDePalabras.txt"); BufferedReader br = new BufferedReader(fr)) {
 			String palabra;
 			while ((palabra = br.readLine()) != null) {
-				listaDePalabras(palabra);
+				listaDePalabras(palabra.toLowerCase());
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

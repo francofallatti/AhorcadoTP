@@ -17,7 +17,7 @@ public class Ahorcado {
 	private Palabra palabraEnJuego;
 
 	
-	public Ahorcado(Dificultad dificultad) {
+	public Ahorcado(Dificultad dificultad, Lenguaje lenguaje) {
 		intentos = 6;
 		
 		//inicializa el hashMap de palabras
@@ -26,7 +26,7 @@ public class Ahorcado {
 		palabras.put(Dificultad.Dificil, new HashSet<Palabra>());
 		
 		//agrega las palabras del txt segun su nivel de dificultad al set que le corresponda
-		agregarPalabras();
+		agregarPalabras(lenguaje);
 		
 		//selecciona una palabra a jugar y la inicializa en palabraEnJuego
 		Palabra[] palabrasPorDificultad = palabras.get(dificultad).toArray(new Palabra[palabras.get(dificultad).size()]);
@@ -34,12 +34,12 @@ public class Ahorcado {
 		palabraEnJuego = palabrasPorDificultad[r];
 	}
 	
-	public static void jugar(Dificultad dificultad){
-		Ahorcado ahorcado = new Ahorcado(dificultad);
+	public static void jugar(Dificultad dificultad, Lenguaje lenguaje){
+		Ahorcado ahorcado = new Ahorcado(dificultad, lenguaje);
 	}
 
-	private void agregarPalabras() {
-		try (FileReader fr = new FileReader("ListaDePalabras.txt"); BufferedReader br = new BufferedReader(fr)) {
+	private void agregarPalabras(Lenguaje lenguaje) {
+		try (FileReader fr = new FileReader(seleccionarArchivoDeLenguaje(lenguaje));BufferedReader br = new BufferedReader(fr)) {
 			String palabra;
 			while ((palabra = br.readLine()) != null) {
 				listaDePalabras(palabra.toLowerCase());
@@ -48,6 +48,22 @@ public class Ahorcado {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private static String seleccionarArchivoDeLenguaje(Lenguaje lenguaje) {
+		switch (lenguaje) {
+		case Español:
+			return "palabrasEnEspañol.txt";
+			
+		case Ingles:
+			return "palabrasEnIngles.txt";
+			
+		case Frances:
+			return "palabrasEnFrances.txt";
+			
+		default:
+			return null;
 		}
 	}
 	private void listaDePalabras(String palabra) {

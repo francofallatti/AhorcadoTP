@@ -96,5 +96,8 @@ public class Ahorcado {
 	public Palabra getPalabra() {
 		return palabraEnJuego;
 	}
+	public String getPalabraString() {
+		return getPalabra().toString();
+	}
 	
 }

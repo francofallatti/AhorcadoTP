@@ -100,14 +100,19 @@ public class MainInterface {
 		frame.getContentPane().add(comboBoxLenguaje);
 		comboBoxLenguaje.setModel(new DefaultComboBoxModel(new Lenguaje[] {Lenguaje.Español,Lenguaje.Ingles,Lenguaje.Frances}));
 		
+		InterfazJuego interfaz = new InterfazJuego();
+		
 		JButton btnJugar = new JButton("Jugar!");
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {				
 				Dificultad dificultad = (Dificultad)comboBoxDificultad.getSelectedItem();
-				System.out.println(dificultad);
-				Lenguaje lenguanje = (Lenguaje)comboBoxLenguaje.getSelectedItem();
-				System.out.println(lenguanje);
+				//System.out.println(dificultad);
+				Lenguaje lenguaje = (Lenguaje)comboBoxLenguaje.getSelectedItem();
+				//System.out.println(lenguaje);
+				
 				//Ahorcado.jugar(dificultad, lenguaje);
+				
+				interfaz.setVisible(true);
 			}
 		});
 		btnJugar.setBounds(161, 207, 91, 23);

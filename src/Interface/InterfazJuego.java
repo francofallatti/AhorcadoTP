@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -17,6 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.Canvas;
+import java.awt.Button;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InterfazJuego extends JFrame {
 	
@@ -72,6 +76,20 @@ public class InterfazJuego extends JFrame {
 		lbPalabra.setBounds(92, 179, 129, 38);
 		contentPane.add(lbPalabra);
 		
+		Button button = new Button("Juego Nuevo");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//setVisible();
+				MainInterface interfaceMenu = new MainInterface();
+				interfaceMenu.SetVisibleTrue();
+
+			}
+
+			
+		});
+		button.setBounds(354, 229, 70, 22);
+		contentPane.add(button);
+		
 		
 		
 		eventosDelTeclado();
@@ -105,4 +123,11 @@ public class InterfazJuego extends JFrame {
 		textField.addKeyListener(eventoTeclado);
 	}
 	
+	private void setVisible() {	
+		this.processWindowEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+
+		
+	}
 }
+		
+        

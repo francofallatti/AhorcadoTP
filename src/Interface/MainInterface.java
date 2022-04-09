@@ -22,7 +22,7 @@ import java.awt.event.ActionEvent;
 
 public class MainInterface {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -113,12 +113,17 @@ public class MainInterface {
 				//Ahorcado.jugar(dificultad, lenguaje);
 				
 				interfaz.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 		btnJugar.setBounds(161, 207, 91, 23);
 		frame.getContentPane().add(btnJugar);
-		
-		
+			
 
 	}
+	
+	public void SetVisibleTrue() {
+		frame.setVisible(true);
+	}
 }
+

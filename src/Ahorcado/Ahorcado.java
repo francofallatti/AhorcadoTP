@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import javax.swing.JLabel;
+
 public class Ahorcado {
 	// k: nivel de dificultad -> v: set de palabras para esa dificultad
 	private HashMap<Dificultad, Set<Palabra>> palabras;

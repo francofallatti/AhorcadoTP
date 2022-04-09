@@ -103,6 +103,10 @@ public class InterfazJuego extends JFrame {
 		});
 		button.setBounds(354, 229, 70, 22);
 		contentPane.add(button);
+		
+		JLabel vidas = new JLabel(ahorcado.getIntentos().toString());
+		vidas.setBounds(366, 11, 46, 14);
+		contentPane.add(vidas);
 
 		JButton btnNewButton = new JButton("Arriesgar letra!");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -110,6 +114,7 @@ public class InterfazJuego extends JFrame {
 				String letra = letraArriesgada.getText();
 				Character c = letra.charAt(0);
 				ahorcado.arriesgarLetra(c);
+				vidas.setText(ahorcado.getIntentos().toString());
 			}
 		});
 		btnNewButton.setBounds(146, 178, 131, 23);
@@ -124,9 +129,6 @@ public class InterfazJuego extends JFrame {
 		vidasText.setBounds(321, 11, 46, 14);
 		contentPane.add(vidasText);
 		
-		JLabel lblNewLabel_2 = new JLabel(ahorcado.getIntentos().toString());
-		lblNewLabel_2.setBounds(366, 11, 46, 14);
-		contentPane.add(lblNewLabel_2);
 
 	}
 

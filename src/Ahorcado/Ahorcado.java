@@ -48,12 +48,14 @@ public class Ahorcado {
 		return ahorcado;
 	}
 
+	
+	public void actualizarPalabraEncriptada(Character c) {
+		palabraEncriptada.desencriptarPalabra(palabraEnJuego, c);
+	}
 
 	public void arriesgarLetra(Character c) {
 		if (palabraEnJuego.contieneLetra(c)) {
-			for (Integer i : Palabra.indicesDeApariciones(c, palabraEnJuego)) {
-				palabraEncriptada.reemplazarCaracter(i, c);
-			}
+			
 		} else {
 			letrasErradas.add(c);
 			intentos--;
@@ -113,11 +115,11 @@ public class Ahorcado {
 		return intentos;
 	}
 
-	public String getPalabraEnJuego() {
-		return palabraEnJuego.toString();
+	public Palabra getPalabraEnJuego() {
+		return palabraEnJuego;
 	}
 	
-	public String getPalabraEncriptada() {
-		return palabraEncriptada.toString();
+	public Palabra getPalabraEncriptada() {
+		return palabraEncriptada;
 	}
 }

@@ -32,6 +32,12 @@ public class Palabra {
 		return palabra.contains(c);
 	}
 	
+	public void desencriptarPalabra(Palabra palabraSinEncriptar, Character c) {
+		for (Integer i : Palabra.indicesDeApariciones(c, palabraSinEncriptar)) {
+			palabra.set(i, c);
+		}
+	}
+	
 	public static Set<Integer> indicesDeApariciones(Character c, Palabra p){
 		Set<Integer> ret = new HashSet<Integer>();
 		indicesDeApariciones(c, p, ret);
@@ -45,7 +51,7 @@ public class Palabra {
 		else {
 				Integer indice = p.indiceDe(c);
 				ret.add(indice);
-				return indicesDeApariciones(c, p.splitPalabra(indice + 1, p.longitud()-1), ret);
+				return indicesDeApariciones(c, p.splitPalabra(indice + 1, p.longitud()), ret);
 		}
 	}
 	

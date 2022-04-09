@@ -64,6 +64,15 @@ public class InterfazJuego extends JFrame {
 		lblNewLabel.setBounds(177, 41, 72, 14);
 		contentPane.add(lblNewLabel);
 
+		JLabel encriptada = new JLabel(ahorcado.getPalabraEncriptada().toString());
+		encriptada.setBounds(132, 115, 176, 14);
+		contentPane.add(encriptada);
+		
+		JLabel vidasText = new JLabel("vidas:");
+		vidasText.setFont(new Font("Joystix", Font.PLAIN, 11));
+		vidasText.setBounds(321, 11, 46, 14);
+		contentPane.add(vidasText);
+		
 		// ------------------------------------------------------------------------------------------------
 		JLabel lblLetra = new JLabel("Letra:");
 		lblLetra.setFont(new Font("Joystix", Font.PLAIN, 11));
@@ -87,9 +96,10 @@ public class InterfazJuego extends JFrame {
 		letraArriesgada.setColumns(10);
 
 		// String palabraString = Ahorcado.getPalabraString();
-		JLabel lbPalabra = new JLabel(ahorcado.getPalabraEnJuego());
+		JLabel lbPalabra = new JLabel(ahorcado.getPalabraEnJuego().toString());
 		lbPalabra.setBounds(146, 66, 135, 38);
 		contentPane.add(lbPalabra);
+		lbPalabra.setVisible(false);
 
 		Button button = new Button("Juego Nuevo");
 		button.addActionListener(new ActionListener() {
@@ -115,21 +125,13 @@ public class InterfazJuego extends JFrame {
 				Character c = letra.charAt(0);
 				ahorcado.arriesgarLetra(c);
 				vidas.setText(ahorcado.getIntentos().toString());
+				letraArriesgada.setText("");
+				ahorcado.getPalabraEncriptada().desencriptarPalabra(ahorcado.getPalabraEnJuego(), c);
+				encriptada.setText(ahorcado.getPalabraEncriptada().toString());
 			}
 		});
 		btnNewButton.setBounds(146, 178, 131, 23);
 		contentPane.add(btnNewButton);
-		
-		JLabel encriptada = new JLabel(ahorcado.getPalabraEncriptada());
-		encriptada.setBounds(191, 111, 46, 14);
-		contentPane.add(encriptada);
-		
-		JLabel vidasText = new JLabel("vidas:");
-		vidasText.setFont(new Font("Joystix", Font.PLAIN, 11));
-		vidasText.setBounds(321, 11, 46, 14);
-		contentPane.add(vidasText);
-		
-
 	}
 
 	private void setVisible() {

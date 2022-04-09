@@ -8,6 +8,7 @@ public class Palabra {
 	private ArrayList<Character> palabra;	//ver si conviene Linked o Array
 	
 	public Palabra() {
+		palabra = new ArrayList<Character>();
 	}
 	
 	public Palabra(ArrayList<Character> s) {
@@ -44,11 +45,26 @@ public class Palabra {
 		else {
 				Integer indice = p.indiceDe(c);
 				ret.add(indice);
-				return indicesDeApariciones(c, p.splitPalabra(indice + 1, p.longitud()), ret);
+				return indicesDeApariciones(c, p.splitPalabra(indice + 1, p.longitud()-1), ret);
 		}
 	}
 	
-
+	public void reemplazarCaracter(int indice, Character c) {
+		palabra.set(indice, c);
+	}
+	
+	private void agregarCaracter(Character c) {
+		palabra.add(c);
+	}
+	
+	public Palabra encriptarPalabra() {
+		Palabra palabraNueva = new Palabra();
+		for(Character caracter : palabra) {
+			palabraNueva.agregarCaracter('*');
+		}
+		return palabraNueva;
+	}
+	
 	private Integer indiceDe(Character c) {
 		return palabra.indexOf(c);
 	}

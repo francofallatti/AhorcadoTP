@@ -110,7 +110,7 @@ public class MainInterface {
 				Lenguaje lenguaje = (Lenguaje)comboBoxLenguaje.getSelectedItem();
 				//System.out.println(lenguaje);
 				
-				Ahorcado ahorcado = Ahorcado.jugar(dificultad, lenguaje);
+				Ahorcado ahorcado = Ahorcado.iniciarJuego(dificultad, lenguaje);
 				InterfazJuego interfaz = new InterfazJuego(ahorcado);
 				interfaz.setVisible(true);
 				frame.setVisible(false);

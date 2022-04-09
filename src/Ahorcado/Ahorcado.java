@@ -10,38 +10,57 @@ import java.util.Random;
 import java.util.Set;
 
 public class Ahorcado {
-	// k: nivel de dificultad ->  v: set de palabras para esa dificultad
-	private HashMap<Dificultad,Set<Palabra> > palabras;
+	// k: nivel de dificultad -> v: set de palabras para esa dificultad
+	private HashMap<Dificultad, Set<Palabra>> palabras;
 	private Set<Character> letrasErradas; // lista de caracteres errados
 	private Integer intentos;
 	private Palabra palabraEnJuego;
+	private Palabra palabraEncriptada;
 
-	
 	public Ahorcado(Dificultad dificultad, Lenguaje lenguaje) {
 		intentos = 6;
-		
-		palabras = new HashMap<Dificultad,Set<Palabra>>();
-		//inicializa el hashMap de palabras
+
+		palabras = new HashMap<Dificultad, Set<Palabra>>();
+		letrasErradas = new HashSet<Character>();
+		// inicializa el hashMap de palabras
 		palabras.put(Dificultad.Facil, new HashSet<Palabra>());
 		palabras.put(Dificultad.Intermedio, new HashSet<Palabra>());
 		palabras.put(Dificultad.Dificil, new HashSet<Palabra>());
-		
-		//agrega las palabras del txt segun su nivel de dificultad al set que le corresponda
+
+		// agrega las palabras del txt segun su nivel de dificultad al set que le
+		// corresponda
 		agregarPalabras(lenguaje);
-		
-		//selecciona una palabra a jugar y la inicializa en palabraEnJuego
-		Palabra[] palabrasPorDificultad = palabras.get(dificultad).toArray(new Palabra[palabras.get(dificultad).size()]);
+
+		// selecciona una palabra a jugar y la inicializa en palabraEnJuego
+		Palabra[] palabrasPorDificultad = palabras.get(dificultad)
+				.toArray(new Palabra[palabras.get(dificultad).size()]);
 		Integer r = new Random().nextInt(palabras.get(dificultad).size());
 		palabraEnJuego = palabrasPorDificultad[r];
+		
+		palabraEncriptada = palabraEnJuego.encriptarPalabra();
+
 	}
-	
-	public static Ahorcado jugar(Dificultad dificultad, Lenguaje lenguaje){
+
+	public static Ahorcado iniciarJuego(Dificultad dificultad, Lenguaje lenguaje) {
 		Ahorcado ahorcado = new Ahorcado(dificultad, lenguaje);
 		return ahorcado;
 	}
 
+
+	public void arriesgarLetra(Character c) {
+		if (palabraEnJuego.contieneLetra(c)) {
+			for (Integer i : Palabra.indicesDeApariciones(c, palabraEnJuego)) {
+				palabraEncriptada.reemplazarCaracter(i, c);
+			}
+		} else {
+			letrasErradas.add(c);
+			intentos--;
+		}
+	}
+
 	private void agregarPalabras(Lenguaje lenguaje) {
-		try (FileReader fr = new FileReader(seleccionarArchivoDeLenguaje(lenguaje));BufferedReader br = new BufferedReader(fr)) {
+		try (FileReader fr = new FileReader(seleccionarArchivoDeLenguaje(lenguaje));
+				BufferedReader br = new BufferedReader(fr)) {
 			String palabra;
 			while ((palabra = br.readLine()) != null) {
 				listaDePalabras(palabra.toLowerCase());
@@ -52,51 +71,51 @@ public class Ahorcado {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static String seleccionarArchivoDeLenguaje(Lenguaje lenguaje) {
 		switch (lenguaje) {
 		case Español:
 			return "palabrasEnEspañol.txt";
-			
+
 		case Ingles:
 			return "palabrasEnIngles.txt";
-			
+
 		case Frances:
 			return "palabrasEnFrances.txt";
-			
+
 		default:
 			return null;
 		}
 	}
+
 	private void listaDePalabras(String palabra) {
 		Palabra p = new Palabra(palabra);
 		switch (Palabra.dificultad(p)) {
 		case Facil:
 			palabras.get(Dificultad.Facil).add(p);
 			break;
-			
+
 		case Intermedio:
 			palabras.get(Dificultad.Intermedio).add(p);
 			break;
-			
+
 		case Dificil:
 			palabras.get(Dificultad.Facil).add(p);
 			break;
-			
+
 		default:
 			break;
 		}
 	}
-	
-	// comprueba si el caracter se encuentra en la palabra y lo agrega a la lista en
-	// caso de ser false
-	private void caracterErrada(Character c) {
-			letrasErradas.add(c);
-			intentos--;
+	public Integer getIntentos() {
+		return intentos;
 	}
 
 	public String getPalabraEnJuego() {
 		return palabraEnJuego.toString();
 	}
 	
+	public String getPalabraEncriptada() {
+		return palabraEncriptada.toString();
+	}
 }

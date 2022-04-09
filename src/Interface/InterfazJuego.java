@@ -12,21 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Ahorcado.Ahorcado;
-import Ahorcado.Palabra;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import java.awt.Canvas;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFormattedTextField;
-import javax.swing.DropMode;
-import javax.swing.InputVerifier;
+
 import java.awt.event.KeyAdapter;
 
 public class InterfazJuego extends JFrame {
@@ -43,7 +37,7 @@ public class InterfazJuego extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ahorcado ahorcado = Ahorcado.jugar(null, null);
+					Ahorcado ahorcado = Ahorcado.iniciarJuego(null, null);
 					InterfazJuego frame = new InterfazJuego(ahorcado);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -66,8 +60,8 @@ public class InterfazJuego extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("AHORCADO");
-		lblNewLabel.setFont(new Font("Joystix", Font.PLAIN, 11));
-		lblNewLabel.setBounds(173, 11, 64, 14);
+		lblNewLabel.setFont(new Font("Joystix", Font.PLAIN, 12));
+		lblNewLabel.setBounds(177, 41, 72, 14);
 		contentPane.add(lblNewLabel);
 
 		// ------------------------------------------------------------------------------------------------
@@ -114,11 +108,25 @@ public class InterfazJuego extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String letra = letraArriesgada.getText();
+				Character c = letra.charAt(0);
+				ahorcado.arriesgarLetra(c);
 			}
 		});
 		btnNewButton.setBounds(146, 178, 131, 23);
 		contentPane.add(btnNewButton);
-
+		
+		JLabel encriptada = new JLabel(ahorcado.getPalabraEncriptada());
+		encriptada.setBounds(191, 111, 46, 14);
+		contentPane.add(encriptada);
+		
+		JLabel vidasText = new JLabel("vidas:");
+		vidasText.setFont(new Font("Joystix", Font.PLAIN, 11));
+		vidasText.setBounds(321, 11, 46, 14);
+		contentPane.add(vidasText);
+		
+		JLabel lblNewLabel_2 = new JLabel(ahorcado.getIntentos().toString());
+		lblNewLabel_2.setBounds(366, 11, 46, 14);
+		contentPane.add(lblNewLabel_2);
 
 	}
 

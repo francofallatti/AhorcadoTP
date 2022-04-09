@@ -111,6 +111,15 @@ public class Ahorcado {
 			break;
 		}
 	}
+	
+	public boolean juegoGanado() {
+		return palabraEncriptada.equals(palabraEnJuego);
+	}
+	
+	public boolean juegoPerdido() {
+		return intentos.equals(0);
+	}
+	
 	public Integer getIntentos() {
 		return intentos;
 	}

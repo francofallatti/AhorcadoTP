@@ -76,11 +76,7 @@ public class Palabra {
 	}
 	
 	public String toString() {
-		String palabraString="";
-		for (Character character : palabra) {
-			palabraString+=character;
-		}
-		return palabraString;
+		return palabra.toString();
 	}
 	
 }

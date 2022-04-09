@@ -21,6 +21,8 @@ import java.awt.Canvas;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.JButton;
 
 public class InterfazJuego extends JFrame {
 	
@@ -36,7 +38,8 @@ public class InterfazJuego extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfazJuego frame = new InterfazJuego();
+					Ahorcado ahorcado = Ahorcado.jugar(null, null);
+					InterfazJuego frame = new InterfazJuego(ahorcado);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +51,7 @@ public class InterfazJuego extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InterfazJuego() {
+	public InterfazJuego(Ahorcado ahorcado) {
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -57,23 +60,25 @@ public class InterfazJuego extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("JUEGO");
-		lblNewLabel.setBounds(175, 11, 46, 14);
+		JLabel lblNewLabel = new JLabel("AHORCADO");
+		lblNewLabel.setFont(new Font("Joystix", Font.PLAIN, 11));
+		lblNewLabel.setBounds(173, 11, 64, 14);
 		contentPane.add(lblNewLabel);
 		
 		//------------------------------------------------------------------------------------------------
 		JLabel lblLetra = new JLabel("Letra:");
-		lblLetra.setBounds(52, 54, 35, 14);
+		lblLetra.setFont(new Font("Joystix", Font.PLAIN, 11));
+		lblLetra.setBounds(164, 153, 41, 14);
 		contentPane.add(lblLetra);
 		
 		textField = new JTextField();
-		textField.setBounds(91, 51, 22, 20);
+		textField.setBounds(215, 150, 22, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		//String palabraString = Ahorcado.getPalabraString();
-		JLabel lbPalabra = new JLabel("hola");
-		lbPalabra.setBounds(92, 179, 129, 38);
+		JLabel lbPalabra = new JLabel(ahorcado.getPalabraEnJuego());
+		lbPalabra.setBounds(146, 66, 135, 38);
 		contentPane.add(lbPalabra);
 		
 		Button button = new Button("Juego Nuevo");
@@ -89,6 +94,10 @@ public class InterfazJuego extends JFrame {
 		});
 		button.setBounds(354, 229, 70, 22);
 		contentPane.add(button);
+		
+		JButton btnNewButton = new JButton("Arriesgar letra!");
+		btnNewButton.setBounds(146, 178, 131, 23);
+		contentPane.add(btnNewButton);
 		
 		
 		

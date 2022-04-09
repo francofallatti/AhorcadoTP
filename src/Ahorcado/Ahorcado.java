@@ -20,6 +20,7 @@ public class Ahorcado {
 	public Ahorcado(Dificultad dificultad, Lenguaje lenguaje) {
 		intentos = 6;
 		
+		palabras = new HashMap<Dificultad,Set<Palabra>>();
 		//inicializa el hashMap de palabras
 		palabras.put(Dificultad.Facil, new HashSet<Palabra>());
 		palabras.put(Dificultad.Intermedio, new HashSet<Palabra>());
@@ -30,12 +31,13 @@ public class Ahorcado {
 		
 		//selecciona una palabra a jugar y la inicializa en palabraEnJuego
 		Palabra[] palabrasPorDificultad = palabras.get(dificultad).toArray(new Palabra[palabras.get(dificultad).size()]);
-		Integer r = new Random().nextInt()*palabras.get(dificultad).size();
+		Integer r = new Random().nextInt(palabras.get(dificultad).size());
 		palabraEnJuego = palabrasPorDificultad[r];
 	}
 	
-	public static void jugar(Dificultad dificultad, Lenguaje lenguaje){
+	public static Ahorcado jugar(Dificultad dificultad, Lenguaje lenguaje){
 		Ahorcado ahorcado = new Ahorcado(dificultad, lenguaje);
+		return ahorcado;
 	}
 
 	private void agregarPalabras(Lenguaje lenguaje) {
@@ -93,11 +95,8 @@ public class Ahorcado {
 			intentos--;
 	}
 
-	public Palabra getPalabra() {
-		return palabraEnJuego;
-	}
-	public String getPalabraString() {
-		return getPalabra().toString();
+	public String getPalabraEnJuego() {
+		return palabraEnJuego.toString();
 	}
 	
 }

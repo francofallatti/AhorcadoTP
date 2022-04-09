@@ -92,8 +92,10 @@ public class Palabra {
 		else {
 			if(p.longitud() >= 5 && p.longitud() < 8) {
 				return Dificultad.Intermedio;
+			} else {
+				return Dificultad.Dificil;
 			}
-			return Dificultad.Dificil;
+			
 		}
 	}
 	

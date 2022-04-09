@@ -1,9 +1,7 @@
 package Interface;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JDialog;
@@ -100,19 +98,6 @@ public class InterfazJuego extends JFrame {
 		lbPalabra.setBounds(146, 66, 135, 38);
 		contentPane.add(lbPalabra);
 		lbPalabra.setVisible(false);
-
-		Button button = new Button("Juego Nuevo");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// setVisible();
-				MainInterface interfaceMenu = new MainInterface();
-				interfaceMenu.SetVisibleTrue();
-
-			}
-
-		});
-		button.setBounds(354, 229, 70, 22);
-		contentPane.add(button);
 		
 		JLabel vidas = new JLabel(ahorcado.getIntentos().toString());
 		vidas.setBounds(366, 11, 46, 14);
@@ -128,6 +113,15 @@ public class InterfazJuego extends JFrame {
 				letraArriesgada.setText("");
 				ahorcado.getPalabraEncriptada().desencriptarPalabra(ahorcado.getPalabraEnJuego(), c);
 				encriptada.setText(ahorcado.getPalabraEncriptada().toString());
+				
+				if(ahorcado.juegoGanado()) {
+					WinInterface ganaste = new WinInterface();
+					ganaste.setVisible(true);
+				}
+				if(ahorcado.juegoPerdido()) {
+					LooseInterface perdiste = new LooseInterface();
+					perdiste.setVisible(true);
+				}
 			}
 		});
 		btnNewButton.setBounds(146, 178, 131, 23);

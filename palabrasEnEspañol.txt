@@ -9,5 +9,7 @@ termo
 pared
 bolsa
 cajon
-Centrifugar
-Murcielagos 
+auditores
+neumaticos
+centrifuga
+murcielagos 

@@ -112,22 +112,27 @@ public class Ahorcado {
 		}
 	}
 	
+	//Compara los Strings de la Palabra en juego y la palabra encriptada para mostrar WinInterface
 	public boolean juegoGanado() {
-		return palabraEncriptada.equals(palabraEnJuego);
+		return palabraEncriptada.toString().equals(palabraEnJuego.toString());
 	}
 	
+	//Compara si los intentos son iguales a 0 para mostrar LooseInterface
 	public boolean juegoPerdido() {
 		return intentos.equals(0);
 	}
 	
+	//devuelve intentos restantes
 	public Integer getIntentos() {
 		return intentos;
 	}
-
+	
+	//devuelve la palabra en juego
 	public Palabra getPalabraEnJuego() {
 		return palabraEnJuego;
 	}
 	
+	//devuelve palabra encriptada
 	public Palabra getPalabraEncriptada() {
 		return palabraEncriptada;
 	}

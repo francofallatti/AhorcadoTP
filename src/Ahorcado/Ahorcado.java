@@ -104,7 +104,7 @@ public class Ahorcado {
 			break;
 
 		case Dificil:
-			palabras.get(Dificultad.Facil).add(p);
+			palabras.get(Dificultad.Dificil).add(p);
 			break;
 
 		default:

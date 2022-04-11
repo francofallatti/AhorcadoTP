@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -45,9 +46,10 @@ public class WinInterface extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Joystix", Font.PLAIN, 16));
 		lblNewLabel.setBounds(167, 51, 93, 14);
-		frame.add(lblNewLabel);
+		frame.getContentPane().add(lblNewLabel);
 		
-		Button button = new Button("Juego Nuevo");
+		JButton button = new JButton("Juego Nuevo");
+		button.setHorizontalAlignment(SwingConstants.CENTER);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainInterface volverAJugar = new MainInterface();
@@ -55,7 +57,7 @@ public class WinInterface extends JFrame {
 				frame.setVisible(false);
 			}
 		});
-		button.setBounds(179, 164, 70, 22);
-		frame.add(button);
+		button.setBounds(160, 163, 111, 34);
+		frame.getContentPane().add(button);
 	}
 }

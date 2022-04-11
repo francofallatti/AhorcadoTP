@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -52,14 +53,15 @@ public class LooseInterface extends JFrame {
 		lblNewLabel.setBounds(144, 51, 140, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblPalabra = new JLabel("La palabra era: "+ palabraJugada);// +Ahorcado.getPalabraEnJuego().toString()
+		JLabel lblPalabra = new JLabel("La palabra era: "+ palabraJugada);
 		lblPalabra.setForeground(Color.WHITE);
 		lblPalabra.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPalabra.setFont(new Font("Joystix", Font.PLAIN, 16));
 		lblPalabra.setBounds(52, 106, 326, 41);
 		frame.getContentPane().add(lblPalabra);
 		
-		Button button = new Button("Juego Nuevo");
+		JButton button = new JButton("Juego Nuevo");
+		button.setHorizontalAlignment(SwingConstants.CENTER);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainInterface volverAJugar = new MainInterface();
@@ -67,7 +69,7 @@ public class LooseInterface extends JFrame {
 				frame.setVisible(false);
 			}
 		});
-		button.setBounds(179, 164, 70, 22);
+		button.setBounds(160, 158, 111, 34);
 		frame.getContentPane().add(button);
 	}
 

@@ -111,8 +111,7 @@ public class MainInterface {
 				//System.out.println(lenguaje);
 				
 				Ahorcado ahorcado = Ahorcado.iniciarJuego(dificultad, lenguaje);
-				InterfazJuego interfaz = new InterfazJuego(ahorcado);
-				interfaz.setVisible(true);
+				InterfazJuego interfaz = new InterfazJuego(ahorcado, true);
 				frame.setVisible(false);
 			}
 		});

@@ -28,8 +28,7 @@ public class InterfazJuego extends JFrame {
 
 	Ahorcado ahorcado;
 	
-	
-	private JPanel contentPane;
+	public JFrame frame;
 	private JTextField letraArriesgada;
 
 	/**
@@ -40,8 +39,7 @@ public class InterfazJuego extends JFrame {
 			public void run() {
 				try {
 					Ahorcado ahorcado = Ahorcado.iniciarJuego(null, null);
-					InterfazJuego frame = new InterfazJuego(ahorcado);
-					frame.setVisible(true);
+					InterfazJuego window = new InterfazJuego(ahorcado, true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,42 +50,40 @@ public class InterfazJuego extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InterfazJuego(Ahorcado ahorcado) {
-		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setBackground(Color.BLACK);
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	public InterfazJuego(Ahorcado ahorcado, boolean b) {
+		frame = new JFrame();
+		frame.setVisible(b);
+		frame.getContentPane().setBackground(Color.BLACK);
+		frame.setBounds(100, 100, 450, 300);	
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 
 		JLabel nombreJuego = new JLabel("AHORCADO");
 		nombreJuego.setForeground(Color.WHITE);
 		nombreJuego.setBackground(Color.WHITE);
 		nombreJuego.setFont(new Font("Joystix", Font.PLAIN, 18));
 		nombreJuego.setBounds(165, 39, 112, 29);
-		contentPane.add(nombreJuego);		
+		frame.getContentPane().add(nombreJuego);		
 
 		JLabel encriptada = new JLabel(ahorcado.getPalabraEncriptada().toString());
 		encriptada.setForeground(Color.WHITE);
 		encriptada.setHorizontalAlignment(SwingConstants.CENTER);
 		encriptada.setFont(new Font("Joystix", Font.PLAIN, 14));
 		encriptada.setBounds(63, 104, 287, 14);
-		contentPane.add(encriptada);
+		frame.getContentPane().add(encriptada);
 		
 		
 		JLabel vidasText = new JLabel("vidas:");
 		vidasText.setForeground(Color.WHITE);
 		vidasText.setFont(new Font("Joystix", Font.PLAIN, 11));
 		vidasText.setBounds(321, 11, 46, 14);
-		contentPane.add(vidasText);
+		frame.getContentPane().add(vidasText);
 		
 		JLabel lblLetra = new JLabel("Letra:");
 		lblLetra.setForeground(Color.WHITE);
 		lblLetra.setFont(new Font("Joystix", Font.PLAIN, 11));
 		lblLetra.setBounds(164, 153, 41, 14);
-		contentPane.add(lblLetra);
+		frame.getContentPane().add(lblLetra);
 
 		letraArriesgada = new JTextField();
 		
@@ -102,20 +98,20 @@ public class InterfazJuego extends JFrame {
 		});
 		
 		letraArriesgada.setBounds(215, 150, 22, 20);
-		contentPane.add(letraArriesgada);
+		frame.getContentPane().add(letraArriesgada);
 		letraArriesgada.setColumns(10);
 
 		// String palabraString = Ahorcado.getPalabraString();
 		JLabel lbPalabra = new JLabel(ahorcado.getPalabraEnJuego().toString());
 		lbPalabra.setBounds(10, 223, 135, 38);
-		contentPane.add(lbPalabra);
+		frame.getContentPane().add(lbPalabra);
 		lbPalabra.setVisible(false);
 		
 		JLabel vidas = new JLabel(ahorcado.getIntentos().toString());
 		vidas.setForeground(Color.WHITE);
 		vidas.setFont(new Font("Joystix", Font.PLAIN, 11));
 		vidas.setBounds(366, 11, 46, 14);
-		contentPane.add(vidas);
+		frame.getContentPane().add(vidas);
 
 		JButton btnNewButton = new JButton("Arriesgar letra!");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -130,13 +126,15 @@ public class InterfazJuego extends JFrame {
 				
 				if(ahorcado.juegoGanado()) {
 					WinInterface winInterface = new WinInterface(true);
+					frame.setVisible(false);
 				}
 				if(ahorcado.juegoPerdido()) {
 					LooseInterface perdiste = new LooseInterface(true,ahorcado.getPalabraEnJuego().toString2() );
+					frame.setVisible(false);
 				}
 			}
 		});
 		btnNewButton.setBounds(146, 178, 131, 23);
-		contentPane.add(btnNewButton);
+		frame.getContentPane().add(btnNewButton);
 	}
 }

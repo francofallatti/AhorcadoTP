@@ -8,3 +8,5 @@ genou
 travail
 girafe
 livre
+merci
+nous

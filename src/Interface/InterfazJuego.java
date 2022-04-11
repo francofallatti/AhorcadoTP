@@ -64,7 +64,7 @@ public class InterfazJuego extends JFrame {
 		contentPane.add(lblNewLabel);
 
 		JLabel encriptada = new JLabel(ahorcado.getPalabraEncriptada().toString());
-		encriptada.setBounds(132, 115, 176, 14);
+		encriptada.setBounds(80, 115, 287, 14);
 		contentPane.add(encriptada);
 		
 		JLabel vidasText = new JLabel("vidas:");

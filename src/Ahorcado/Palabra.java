@@ -40,17 +40,17 @@ public class Palabra {
 
 	public static Set<Integer> indicesDeApariciones(Character c, Palabra p) {
 		Set<Integer> ret = new HashSet<Integer>();
-		indicesDeApariciones(c, p, ret);
+		indicesDeApariciones(c, p, ret, -1);
 		return ret;
 	}
 
-	private static Set<Integer> indicesDeApariciones(Character c, Palabra p, Set<Integer> ret) {
+	private static Set<Integer> indicesDeApariciones(Character c, Palabra p, Set<Integer> ret, Integer indiceAnterior) {
 		if (!p.contieneLetra(c)) {
 			return ret;
 		} else {
 			Integer indice = p.indiceDe(c);
-			ret.add(indice);
-			return indicesDeApariciones(c, p.splitPalabra(indice + 1, p.longitud()), ret);
+			ret.add(indice + indiceAnterior + 1);
+			return indicesDeApariciones(c, p.splitPalabra(indice + 1, p.longitud()), ret, indice);
 		}
 	}
 

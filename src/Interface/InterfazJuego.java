@@ -101,7 +101,6 @@ public class InterfazJuego extends JFrame {
 		frame.getContentPane().add(letraArriesgada);
 		letraArriesgada.setColumns(10);
 
-		// String palabraString = Ahorcado.getPalabraString();
 		JLabel lbPalabra = new JLabel(ahorcado.getPalabraEnJuego().toString());
 		lbPalabra.setBounds(10, 223, 135, 38);
 		frame.getContentPane().add(lbPalabra);
@@ -166,8 +165,5 @@ public class InterfazJuego extends JFrame {
 		lblIngresarUnaLetra.setVisible(false);
 		btnNewButton.setBounds(145, 154, 131, 23);
 		frame.getContentPane().add(btnNewButton);
-		
-		
-
 	}
 }

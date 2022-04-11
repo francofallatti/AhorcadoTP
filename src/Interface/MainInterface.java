@@ -7,8 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import Ahorcado.Ahorcado;
 import Ahorcado.Dificultad;
@@ -44,22 +42,6 @@ public class MainInterface {
 	 * Create the application.
 	 */
 	public MainInterface() {
-		/*
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		initialize();
 	}
 
@@ -86,30 +68,26 @@ public class MainInterface {
 		lblTextDificultad.setBounds(85, 90, 244, 14);
 		frame.getContentPane().add(lblTextDificultad);
 
-		JComboBox comboBoxDificultad = new JComboBox();
+		JComboBox<Dificultad> comboBoxDificultad = new JComboBox<Dificultad>();
 		comboBoxDificultad.setForeground(Color.WHITE);
 		comboBoxDificultad.setBackground(Color.BLACK);
 		comboBoxDificultad.setBounds(161, 115, 90, 20);
 		frame.getContentPane().add(comboBoxDificultad);
-		comboBoxDificultad.setModel(new DefaultComboBoxModel(new Dificultad[] {Dificultad.Facil,Dificultad.Intermedio, Dificultad.Dificil}));
+		comboBoxDificultad.setModel(new DefaultComboBoxModel<Dificultad>(new Dificultad[] {Dificultad.Facil,Dificultad.Intermedio, Dificultad.Dificil}));
 		
-		JComboBox comboBoxLenguaje = new JComboBox();
+		JComboBox<Lenguaje> comboBoxLenguaje = new JComboBox<Lenguaje>();
 		comboBoxLenguaje.setForeground(Color.WHITE);
 		comboBoxLenguaje.setBackground(Color.BLACK);
 		comboBoxLenguaje.setBounds(161, 160, 90, 20);
 		frame.getContentPane().add(comboBoxLenguaje);
-		comboBoxLenguaje.setModel(new DefaultComboBoxModel(new Lenguaje[] {Lenguaje.Español,Lenguaje.Ingles,Lenguaje.Frances}));
-		
-		
+		comboBoxLenguaje.setModel(new DefaultComboBoxModel<Lenguaje>(new Lenguaje[] {Lenguaje.Español,Lenguaje.Ingles,Lenguaje.Frances}));
+
 		
 		JButton btnJugar = new JButton("Jugar!");
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {				
 				Dificultad dificultad = (Dificultad)comboBoxDificultad.getSelectedItem();
-				//System.out.println(dificultad);
-				Lenguaje lenguaje = (Lenguaje)comboBoxLenguaje.getSelectedItem();
-				//System.out.println(lenguaje);
-				
+				Lenguaje lenguaje = (Lenguaje) comboBoxLenguaje.getSelectedItem();
 				Ahorcado ahorcado = Ahorcado.iniciarJuego(dificultad, lenguaje);
 				InterfazJuego interfaz = new InterfazJuego(ahorcado, true);
 				frame.setVisible(false);
@@ -117,8 +95,6 @@ public class MainInterface {
 		});
 		btnJugar.setBounds(161, 207, 91, 23);
 		frame.getContentPane().add(btnJugar);
-			
-
 	}
 	
 	public void SetVisibleTrue() {

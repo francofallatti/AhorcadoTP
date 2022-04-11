@@ -119,8 +119,7 @@ public class InterfazJuego extends JFrame {
 					WinInterface winInterface = new WinInterface(true);
 				}
 				if(ahorcado.juegoPerdido()) {
-					LooseInterface perdiste = new LooseInterface();
-					perdiste.setVisible(true);
+					LooseInterface perdiste = new LooseInterface(true,ahorcado.getPalabraEnJuego().toString2() );
 				}
 			}
 		});

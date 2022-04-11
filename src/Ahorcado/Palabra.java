@@ -97,5 +97,14 @@ public class Palabra {
 	public String toString() {
 		return palabra.toString();
 	}
+	
+	public String toString2() {
+		String p=""; 
+		for (Character character : palabra) {
+			p+=character;
+		}
+		return p;
+		
+	}
 
 }

@@ -24,7 +24,8 @@ import java.awt.event.KeyAdapter;
 public class InterfazJuego extends JFrame {
 
 	Ahorcado ahorcado;
-
+	
+	
 	private JPanel contentPane;
 	private JTextField letraArriesgada;
 
@@ -115,8 +116,7 @@ public class InterfazJuego extends JFrame {
 				encriptada.setText(ahorcado.getPalabraEncriptada().toString());
 				
 				if(ahorcado.juegoGanado()) {
-					WinInterface ganaste = new WinInterface();
-					ganaste.setVisible(true);
+					WinInterface winInterface = new WinInterface(true);
 				}
 				if(ahorcado.juegoPerdido()) {
 					LooseInterface perdiste = new LooseInterface();

@@ -48,9 +48,10 @@ public class Palabra {
 		if (!p.contieneLetra(c)) {
 			return ret;
 		} else {
-			Integer indice = p.indiceDe(c);
-			ret.add(indice + indiceAnterior + 1);
-			return indicesDeApariciones(c, p.splitPalabra(indice + 1, p.longitud()), ret, indice);
+			Integer indicePalabraSplit = p.indiceDe(c);
+			Integer indiceActual = indicePalabraSplit + indiceAnterior + 1; //le sumo 1 porque se estaría perdiendo la posicion del 0
+			ret.add(indiceActual);
+			return indicesDeApariciones(c, p.splitPalabra(indicePalabraSplit + 1, p.longitud()), ret, indiceActual);
 		}
 	}
 

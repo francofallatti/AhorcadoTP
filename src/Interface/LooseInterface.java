@@ -56,7 +56,7 @@ public class LooseInterface extends JFrame {
 		JLabel lblPalabra = new JLabel("La palabra era: "+ palabraJugada);
 		lblPalabra.setForeground(Color.WHITE);
 		lblPalabra.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPalabra.setFont(new Font("Joystix", Font.PLAIN, 16));
+		lblPalabra.setFont(new Font("Joystix", Font.PLAIN, 12));
 		lblPalabra.setBounds(52, 106, 326, 41);
 		frame.getContentPane().add(lblPalabra);
 		

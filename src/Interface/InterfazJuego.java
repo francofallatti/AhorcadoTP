@@ -68,7 +68,7 @@ public class InterfazJuego extends JFrame {
 		JLabel encriptada = new JLabel(ahorcado.getPalabraEncriptada().toString());
 		encriptada.setForeground(Color.WHITE);
 		encriptada.setHorizontalAlignment(SwingConstants.CENTER);
-		encriptada.setFont(new Font("Joystix", Font.PLAIN, 14));
+		encriptada.setFont(new Font("Joystix", Font.PLAIN, 10));
 		encriptada.setBounds(63, 104, 287, 14);
 		frame.getContentPane().add(encriptada);
 		
@@ -121,7 +121,7 @@ public class InterfazJuego extends JFrame {
 				ahorcado.arriesgarLetra(c);
 				vidas.setText(ahorcado.getIntentos().toString());
 				letraArriesgada.setText("");
-				ahorcado.getPalabraEncriptada().desencriptarPalabra(ahorcado.getPalabraEnJuego(), c);
+				ahorcado.actualizarPalabraEncriptada(c);
 				encriptada.setText(ahorcado.getPalabraEncriptada().toString());
 				
 				if(ahorcado.juegoGanado()) {

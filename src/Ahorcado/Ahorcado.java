@@ -122,6 +122,10 @@ public class Ahorcado {
 		return intentos.equals(0);
 	}
 	
+	public Set<Character> getLetrasErradas() {
+		return letrasErradas;
+	}
+
 	//devuelve intentos restantes
 	public Integer getIntentos() {
 		return intentos;

@@ -62,14 +62,14 @@ public class InterfazJuego extends JFrame {
 		nombreJuego.setForeground(Color.WHITE);
 		nombreJuego.setBackground(Color.WHITE);
 		nombreJuego.setFont(new Font("Joystix", Font.PLAIN, 18));
-		nombreJuego.setBounds(165, 39, 112, 29);
+		nombreJuego.setBounds(164, 27, 112, 29);
 		frame.getContentPane().add(nombreJuego);		
 
 		JLabel encriptada = new JLabel(ahorcado.getPalabraEncriptada().toString());
 		encriptada.setForeground(Color.WHITE);
 		encriptada.setHorizontalAlignment(SwingConstants.CENTER);
 		encriptada.setFont(new Font("Joystix", Font.PLAIN, 10));
-		encriptada.setBounds(63, 104, 287, 14);
+		encriptada.setBounds(61, 101, 287, 14);
 		frame.getContentPane().add(encriptada);
 		
 		
@@ -82,7 +82,7 @@ public class InterfazJuego extends JFrame {
 		JLabel lblLetra = new JLabel("Letra:");
 		lblLetra.setForeground(Color.WHITE);
 		lblLetra.setFont(new Font("Joystix", Font.PLAIN, 11));
-		lblLetra.setBounds(164, 153, 41, 14);
+		lblLetra.setBounds(164, 126, 41, 14);
 		frame.getContentPane().add(lblLetra);
 
 		letraArriesgada = new JTextField();
@@ -97,7 +97,7 @@ public class InterfazJuego extends JFrame {
 			}
 		});
 		
-		letraArriesgada.setBounds(215, 150, 22, 20);
+		letraArriesgada.setBounds(215, 123, 22, 20);
 		frame.getContentPane().add(letraArriesgada);
 		letraArriesgada.setColumns(10);
 
@@ -112,29 +112,62 @@ public class InterfazJuego extends JFrame {
 		vidas.setFont(new Font("Joystix", Font.PLAIN, 11));
 		vidas.setBounds(366, 11, 46, 14);
 		frame.getContentPane().add(vidas);
+		
+		JLabel lblLetrasArriesgadas = new JLabel("letras erradas:");
+		lblLetrasArriesgadas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLetrasArriesgadas.setForeground(Color.WHITE);
+		lblLetrasArriesgadas.setFont(new Font("Joystix", Font.PLAIN, 10));
+		lblLetrasArriesgadas.setBounds(80, 213, 287, 14);
+		frame.getContentPane().add(lblLetrasArriesgadas);
+		
+		JLabel letrasErradas = new JLabel(ahorcado.getLetrasErradas().toString());
+		letrasErradas.setHorizontalAlignment(SwingConstants.CENTER);
+		letrasErradas.setForeground(Color.WHITE);
+		letrasErradas.setFont(new Font("Joystix", Font.PLAIN, 10));
+		letrasErradas.setBounds(80, 223, 287, 14);
+		frame.getContentPane().add(letrasErradas);
+		
+		JLabel lblIngresarUnaLetra = new JLabel("ingresar una letra para continuar");
+		lblIngresarUnaLetra.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIngresarUnaLetra.setForeground(Color.WHITE);
+		lblIngresarUnaLetra.setFont(new Font("Joystix", Font.PLAIN, 10));
+		lblIngresarUnaLetra.setBounds(80, 188, 287, 14);
+		frame.getContentPane().add(lblIngresarUnaLetra);
+		lblIngresarUnaLetra.setVisible(false);
 
 		JButton btnNewButton = new JButton("Arriesgar letra!");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String letra = letraArriesgada.getText();
-				Character c = letra.charAt(0);
-				ahorcado.arriesgarLetra(c);
-				vidas.setText(ahorcado.getIntentos().toString());
-				letraArriesgada.setText("");
-				ahorcado.actualizarPalabraEncriptada(c);
-				encriptada.setText(ahorcado.getPalabraEncriptada().toString());
-				
-				if(ahorcado.juegoGanado()) {
-					WinInterface winInterface = new WinInterface(true);
-					frame.setVisible(false);
-				}
-				if(ahorcado.juegoPerdido()) {
-					LooseInterface perdiste = new LooseInterface(true,ahorcado.getPalabraEnJuego().toString2() );
-					frame.setVisible(false);
+				if(letraArriesgada.getText().length() == 1) {
+					lblIngresarUnaLetra.setVisible(false);
+					String letra = letraArriesgada.getText();
+					Character c = letra.charAt(0);
+					ahorcado.arriesgarLetra(c);
+					vidas.setText(ahorcado.getIntentos().toString());
+					letrasErradas.setText(ahorcado.getLetrasErradas().toString());
+					
+					letraArriesgada.setText("");
+					ahorcado.actualizarPalabraEncriptada(c);
+					encriptada.setText(ahorcado.getPalabraEncriptada().toString());
+					
+					if(ahorcado.juegoGanado()) {
+						WinInterface winInterface = new WinInterface(true);
+						frame.setVisible(false);
+					}
+					if(ahorcado.juegoPerdido()) {
+						LooseInterface perdiste = new LooseInterface(true,ahorcado.getPalabraEnJuego().toString2() );
+						frame.setVisible(false);
+					}
+				} else {
+					lblIngresarUnaLetra.setVisible(true);
 				}
 			}
 		});
-		btnNewButton.setBounds(146, 178, 131, 23);
+		lblIngresarUnaLetra.setVisible(false);
+		btnNewButton.setBounds(145, 154, 131, 23);
 		frame.getContentPane().add(btnNewButton);
+		
+		
+
 	}
 }

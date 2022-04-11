@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.junit.Ignore;
+
 import Ahorcado.Ahorcado;
 
 import javax.swing.JLabel;
@@ -91,9 +93,20 @@ public class InterfazJuego extends JFrame {
 		letraArriesgada.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if(letraArriesgada.getText().length() >= 1) {
+				if(letraArriesgada.getText().length() >= 1 || keyConditions(e.getKeyChar())) {
 					e.consume();
 				}
+			}
+
+			private boolean keyConditions(char text) {
+				char[] listChar = {'1','2','3','4','5','6','7','8','9','0','!','"','#','$','%','&','/','(',')',
+						'=','|','°','?','¿','¡','+','*','~','´','¨','}',']','{','[','-','_',':','.',',',';','¬'};
+				for (char c : listChar) {
+					if(text== c) {
+						return true;
+					}
+				}
+				return false;
 			}
 		});
 		
@@ -139,7 +152,7 @@ public class InterfazJuego extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(letraArriesgada.getText().length() == 1) {
 					lblIngresarUnaLetra.setVisible(false);
-					String letra = letraArriesgada.getText();
+					String letra = letraArriesgada.getText().toLowerCase();
 					Character c = letra.charAt(0);
 					ahorcado.arriesgarLetra(c);
 					vidas.setText(ahorcado.getIntentos().toString());

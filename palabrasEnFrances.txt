@@ -10,3 +10,5 @@ girafe
 livre
 merci
 nous
+chat
+moi

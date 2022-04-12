@@ -1,6 +1,5 @@
 package Interface;
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -22,7 +21,6 @@ public class WinInterface extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WinInterface window = new WinInterface(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

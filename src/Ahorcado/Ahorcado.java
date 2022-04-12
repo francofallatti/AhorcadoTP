@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 public class Ahorcado {
 	// k: nivel de dificultad -> v: set de palabras para esa dificultad
 	private HashMap<Dificultad, Set<Palabra>> palabras;
-	private Set<Character> letrasErradas; // lista de caracteres errados
+	private Set<Character> letrasErradas; 
 	private Integer intentos;
 	private Palabra palabraEnJuego;
 	private Palabra palabraEncriptada;
@@ -40,7 +40,6 @@ public class Ahorcado {
 		palabraEnJuego = palabrasPorDificultad[r];
 		
 		palabraEncriptada = palabraEnJuego.encriptarPalabra();
-
 	}
 
 	public static Ahorcado iniciarJuego(Dificultad dificultad, Lenguaje lenguaje) {

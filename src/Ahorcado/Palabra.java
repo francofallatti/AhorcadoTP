@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Palabra {
-	private ArrayList<Character> palabra; // ver si conviene Linked o Array
+	private ArrayList<Character> palabra;
 
 	public Palabra() {
 		palabra = new ArrayList<Character>();
@@ -13,7 +13,6 @@ public class Palabra {
 
 	public Palabra(ArrayList<Character> s) {
 		this.palabra = s;
-
 	}
 
 	public Palabra(String s) {

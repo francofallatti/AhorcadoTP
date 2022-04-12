@@ -39,8 +39,6 @@ public class InterfazJuego extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ahorcado ahorcado = Ahorcado.iniciarJuego(null, null);
-					InterfazJuego window = new InterfazJuego(ahorcado, true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
